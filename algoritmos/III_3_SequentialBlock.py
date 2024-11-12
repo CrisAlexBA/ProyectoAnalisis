@@ -7,8 +7,10 @@ def alg_III_3_SequentialBlock(matrizA, matrizB, size1, size2):
                     for j in range(j1, min(j1 + size2, size1)):
                         for k in range(k1, min(k1 + size2, size1)):
                             matrizRes[i][j] += matrizA[i][k] * matrizB[k][j]
+    return matrizRes
 
 def multiply(matrizA, matrizB):
     N = len(matrizA)
     P = len(matrizB[0])
-    alg_III_3_SequentialBlock(matrizA, matrizB, N, P)
+    matrizRes = alg_III_3_SequentialBlock(matrizA, matrizB, N, P)
+    return matrizRes

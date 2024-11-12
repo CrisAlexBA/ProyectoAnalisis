@@ -20,4 +20,5 @@ def alg_III_4_Parallel_Block(matrizA, matrizB, size1, size2):
 def multiply(matrizA, matrizB):
     N = len(matrizA)
     P = len(matrizB[0])
-    alg_III_4_Parallel_Block(matrizA, matrizB, N, P)
+    matrizRes = alg_III_4_Parallel_Block(matrizA, matrizB, N, P)
+    return matrizRes
