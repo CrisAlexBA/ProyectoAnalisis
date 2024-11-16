@@ -1,14 +1,12 @@
 import metodos.NaivOnArray
+import utils.Utils
 
 fun main(args: Array<String>) {
-    val naivOnArray= NaivOnArray()
+    val algNaivOnArray= NaivOnArray()
+    val utils = Utils()
 
-    val a = arrayOf(doubleArrayOf(1.0, 2.0), doubleArrayOf(3.0, 4.0))
-    val b = arrayOf(doubleArrayOf(5.0, 6.0), doubleArrayOf(7.0, 8.0))
-
-    val result = naivOnArray.multiply(a,b)
-    println("Resultado del método naive:")
-    result.forEach { println(it.contentToString()) }
-
+    val size = 512 // Tamaño de la matriz
+    val matrizA = utils.generarMatriz(size)
+    val matrizB = utils.generarMatriz(size)
 
 }
