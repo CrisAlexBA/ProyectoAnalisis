@@ -1,5 +1,7 @@
-import algoritmos.NaivOnArray
+import algoritmos.*
+import utils.MatrixMultiplicationResult
 import utils.Utils
+import kotlin.system.measureTimeMillis
 
 fun main(args: Array<String>) {
     val algNaivOnArray= NaivOnArray()
@@ -9,4 +11,31 @@ fun main(args: Array<String>) {
     val matrizA = utils.generarMatriz(size)
     val matrizB = utils.generarMatriz(size)
 
+    val methods = listOf(
+        NaivOnArray(),
+        NaivLoopUnrollingTwo(),
+        NaivLoopUnrollingFour(),
+        WinogradOriginal(),
+        WinogradScaled()
+    )
+
+    val results = mutableListOf<MatrixMultiplicationResult>()
+
+    for (method in methods){
+        val nombre = method::class.simpleName ?: "MetodoDesconocido"
+
+        val tiempoEjecucion = measureTimeMillis {
+            method.javaClass.getMethod("multiply", Array<DoubleArray>::class.java, Array<DoubleArray>::class.java)
+                .invoke(method, matrizA, matrizB)
+        }
+
+        results.add(MatrixMultiplicationResult(
+            nombreMetodo = nombre,
+            tiempoEjecucion = tiempoEjecucion,
+            tamano = Pair(matrizA.size, matrizA[0].size)))
+    }
+
+    results.forEach {
+        println("Method: ${it.nombreMetodo}, Time: ${it.tiempoEjecucion} ms, Matrix Size: ${it.tamano}")
+    }
 }

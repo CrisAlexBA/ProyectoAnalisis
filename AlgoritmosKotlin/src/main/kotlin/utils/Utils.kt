@@ -15,7 +15,7 @@ class Utils {
      * @return Una matriz de Double (Array<DoubleArray>).
      * @throws Exception si el archivo no se puede leer o si hay un error en el formato.
      */
-    fun loadMatrixFromFile(filePath: String, delimiter: String = " "): Array<DoubleArray> {
+    fun loadMatrixFromFile(filePath: String, delimiter: String = " "): Array<IntArray> {
         val file = File(filePath)
         if (!file.exists()) {
             throw Exception("El archivo $filePath no existe.")
@@ -27,7 +27,7 @@ class Utils {
         }
 
         val matrix = lines.map { line ->
-            line.split(delimiter).filter { it.isNotBlank() }.map { it.toDouble() }.toDoubleArray()
+            line.split(delimiter).filter { it.isNotBlank() }.map { it.toInt() }.toIntArray()
         }.toTypedArray()
 
         // Verificar que todas las filas tengan el mismo número de columnas
@@ -39,8 +39,8 @@ class Utils {
         return matrix
     }
 
-    fun generarMatriz(n: Int, minVal: Int = 100000, maxVal: Int = 999999): Array<IntArray> {
-        return Array(n) { IntArray(n) { Random.nextInt(minVal, maxVal) } }
+    fun generarMatriz(n: Int, minVal: Double = 100000.0, maxVal: Double = 999999.0): Array<DoubleArray> {
+        return Array(n) { DoubleArray(n) { Random.nextDouble(minVal, maxVal) } }
     }
 
     fun medirTiempo(algoritmo: (Array<IntArray>, Array<IntArray>) -> Array<IntArray>, A: Array<IntArray>, B: Array<IntArray>): Pair<Array<IntArray>, Long> {
