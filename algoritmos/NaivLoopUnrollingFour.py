@@ -48,4 +48,5 @@ def multiply(matrizA, matrizB):
     N = len(matrizA)
     P = len(matrizB)
     M = len(matrizB[0])
-    algNaivLoopUnrollingFour(matrizA, matrizB, N, P, M)
+    matrizRes = algNaivLoopUnrollingFour(matrizA, matrizB, N, P, M)
+    return matrizRes
