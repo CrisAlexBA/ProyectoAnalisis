@@ -33,6 +33,12 @@ class NaivLoopUnrollingTwo {
         return c
     }
 
+    fun leerMatrizDesdeArchivo(ruta: String): List<List<Int>> {
+        return ruta.split("\n")
+                .filter { it.isNotBlank() } // Filtra líneas vacías
+                .map { it.trim().split(" ").filter { n -> n.isNotBlank() }.map { n -> n.toInt() } }
+    }
+
     fun multiply(a: Array<DoubleArray>, b: Array<DoubleArray>): Array<DoubleArray> {
         var n = a.size
         var p = b.size

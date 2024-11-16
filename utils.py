@@ -53,3 +53,10 @@ def cargar_algoritmos():
         "WinogradOriginal": alg_WinogradOriginal,
         "WinogradScaled": alg_WinogradScaled
     }
+
+def guardar_matriz_en_txt(matriz, nombre_archivo, etiqueta):
+    """Guarda una matriz en un archivo de texto con una etiqueta."""
+    with open(nombre_archivo, "a") as archivo:
+        archivo.write(f"\n{etiqueta}:\n")
+        for fila in matriz:
+            archivo.write(" ".join(map(str, fila)) + "\n")
