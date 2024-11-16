@@ -1,5 +1,7 @@
 package metodos
 
+import java.lang.Exception
+
 class NaivLoopUnrollingTwo {
 
     fun naivLoopUnrollingTwo(a: Array<DoubleArray>, b: Array<DoubleArray>, n: Int, p: Int, m: Int): Array<DoubleArray> {
@@ -35,6 +37,9 @@ class NaivLoopUnrollingTwo {
         var n = a.size
         var p = b.size
         var m = b[0].size
+        if (p != b.size) {
+            throw Exception("El número de columnas de A debe ser igual al número de filas de B.")
+        }
         return naivLoopUnrollingTwo(a, b, n, p, m)
     }
 }

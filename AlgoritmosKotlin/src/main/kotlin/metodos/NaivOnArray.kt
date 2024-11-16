@@ -1,4 +1,5 @@
 package metodos
+import java.lang.Exception
 
 class NaivOnArray {
 
@@ -19,6 +20,9 @@ class NaivOnArray {
         var n = a.size
         var p = b.size
         var m = b[0].size
+        if (p != b.size) {
+            throw Exception("El número de columnas de A debe ser igual al número de filas de B.")
+        }
         return naivOnArray(a, b, n, p, m)
     }
 }
