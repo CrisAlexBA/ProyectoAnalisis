@@ -1,0 +1,5 @@
+Tiempo de Ejecución de las Matrices 16x16: 80 ms
+Tiempo de Ejecución de las Matrices 32x32: 7 ms
+Tiempo de Ejecución de las Matrices 64x64: 18 ms
+Tiempo de Ejecución de las Matrices 256x256: 94 ms
+Tiempo de Ejecución de las Matrices 512x512: 506 ms

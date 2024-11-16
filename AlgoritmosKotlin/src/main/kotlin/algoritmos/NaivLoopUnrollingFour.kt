@@ -56,4 +56,20 @@ class NaivLoopUnrollingFour {
 
     }
 
+
+
+    fun procesarMatrices(ruta1: String, ruta2: String): Int {
+        // Implementación que lee las rutas y procesa las matrices
+        val matriz1 = leerMatrizDesdeArchivo(ruta1)
+        val matriz2 = leerMatrizDesdeArchivo(ruta2)
+        return matriz1.sumOf { it.sum() } + matriz2.sumOf { it.sum() } // Ejemplo
+    }
+
+    fun leerMatrizDesdeArchivo(ruta: String): List<List<Int>> {
+        return ruta.split("\n")
+                .filter { it.isNotBlank() } // Filtra líneas vacías
+                .map { it.trim().split(" ").filter { n -> n.isNotBlank() }.map { n -> n.toInt() } }
+    }
+
+
 }
