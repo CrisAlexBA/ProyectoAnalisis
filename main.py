@@ -5,6 +5,11 @@ from algoritmos.StrassenWinograd import multiply as algStrassenWinograd
 from algoritmos.III_3_SequentialBlock import multiply as alg_III_3_SequentialBlock
 from algoritmos.III_4_ParallelBlock import multiply as alg_III_4_Parallel_Block
 from algoritmos.III_5_EnhancedParallelBlock import multiply as alg_III_5_Enhanced_Parallel_Block
+from algoritmos.NaivOnArray import multiply as algNaivOnArray
+from algoritmos.NaivLoopUnrollingTwo import multiply as algNaivLoopUnrollingTwo
+from algoritmos.NaivLoopUnrollingFour import multiply as algNaivLoopUnrollingFour
+from algoritmos.WinogradOriginal import multiply as algWinogradOriginal
+from algoritmos.WinogradScaled import multiply as algWinogradScaled
 from utils import *  # Importar funciones útiles
 
 # Main para probar todos los algoritmos
@@ -24,6 +29,11 @@ def main():
         "III_3_SequentialBlock": alg_III_3_SequentialBlock,
         "III_4_ParallelBlock": alg_III_4_Parallel_Block,
         "III_5_EnhancedParallelBlock": alg_III_5_Enhanced_Parallel_Block,
+        "NaivOnArray": algNaivOnArray,
+        "NaivLoopUnrollingTwo": algNaivLoopUnrollingTwo,
+        "NaivLoopUnrollingFour": algNaivLoopUnrollingFour,
+        "WinogradOriginal": algWinogradOriginal,
+        "WinogradScaled": algWinogradScaled
     }
 
     # Listado para guardar resultados

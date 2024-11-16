@@ -35,11 +35,21 @@ def cargar_algoritmos():
     from algoritmos.III_5_EnhancedParallelBlock import enhanced_parallel_block as alg_III_5
     from algoritmos.StrassenNaiv import strassen_naiv as alg_StrassenNaiv
     from algoritmos.StrassenWinograd import strassen_winograd as alg_StrassenWinograd
+    from algoritmos.NaivOnArray import naivOnArray as alg_NaivOnArray
+    from algoritmos.NaivLoopUnrollingTwo import naivLoopUnrollingTwo as alg_NaivLoopUnrollingTwo
+    from algoritmos.NaivLoopUnrollingFour import naivLoopUnrollingFour as alg_NaivLoopUnrollingFour
+    from algoritmos.WinogradOriginal import winogradOriginal as alg_WinogradOriginal
+    from algoritmos.WinogradScaled import winogradScaled as alg_WinogradScaled
     
     return {
         "III_3_SequentialBlock": alg_III_3,
         "III_4_ParallelBlock": alg_III_4,
         "III_5_EnhancedParallelBlock": alg_III_5,
         "StrassenNaiv": alg_StrassenNaiv,
-        "StrassenWinograd": alg_StrassenWinograd
+        "StrassenWinograd": alg_StrassenWinograd,
+        "NaivOnArray": alg_NaivOnArray,
+        "NaivLoopUnrollingTwo": alg_NaivLoopUnrollingTwo,
+        "NaivLoopUnrollingFour": alg_NaivLoopUnrollingFour,
+        "WinogradOriginal": alg_WinogradOriginal,
+        "WinogradScaled": alg_WinogradScaled
     }
