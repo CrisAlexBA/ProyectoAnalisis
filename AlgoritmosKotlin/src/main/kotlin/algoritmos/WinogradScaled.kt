@@ -1,16 +1,12 @@
 package algoritmos
 
-import kotlin.math.abs
-import kotlin.math.log
-import kotlin.math.floor
-import kotlin.math.E
-
+import kotlin.math.*
 
 class WinogradScaled {
-    fun multiplyWithScalar(matrix: Array<IntArray>, scalar: Int): Array<IntArray> {
+    fun multiplyWithScalar(matrix: Array<DoubleArray>, scalar: Double): Array<DoubleArray> {
         val n = matrix.size
         val m = matrix[0].size
-        val result = Array(n) { IntArray(m) }
+        val result = Array(n) { DoubleArray(m) }
         for (i in 0 until n) {
             for (j in 0 until m) {
                 result[i][j] = matrix[i][j] * scalar
@@ -19,8 +15,8 @@ class WinogradScaled {
         return result
     }
 
-    fun normInf(matrix: Array<IntArray>): Int {
-        var maxSum = Int.MIN_VALUE
+    fun normInf(matrix: Array<DoubleArray>): Double {
+        var maxSum = Double.NEGATIVE_INFINITY
         for (row in matrix) {
             val rowSum = row.sumOf { abs(it) }
             if (rowSum > maxSum) {
@@ -31,20 +27,20 @@ class WinogradScaled {
     }
 
     fun algWinogradOriginal(
-        A: Array<IntArray>,
-        B: Array<IntArray>,
+        A: Array<DoubleArray>,
+        B: Array<DoubleArray>,
         N: Int,
         P: Int,
         M: Int
-    ): Array<IntArray> {
+    ): Array<DoubleArray> {
         val upsilon = P % 2
         val gamma = P - upsilon
-        val y = IntArray(M)
-        val z = IntArray(N)
-        val res = Array(M) { IntArray(N) }
+        val y = DoubleArray(M)
+        val z = DoubleArray(N)
+        val res = Array(M) { DoubleArray(N) }
 
         for (i in 0 until M) {
-            var aux = 0
+            var aux = 0.0
             for (j in 0 until gamma step 2) {
                 aux += A[i][j] * A[i][j + 1]
             }
@@ -52,7 +48,7 @@ class WinogradScaled {
         }
 
         for (i in 0 until N) {
-            var aux = 0
+            var aux = 0.0
             for (j in 0 until gamma step 2) {
                 aux += B[j][i] * B[j + 1][i]
             }
@@ -63,7 +59,7 @@ class WinogradScaled {
             val PP = P - 1
             for (i in 0 until M) {
                 for (k in 0 until N) {
-                    var aux = 0
+                    var aux = 0.0
                     for (j in 0 until gamma step 2) {
                         aux += (A[i][j] + B[j + 1][k]) * (A[i][j + 1] + B[j][k])
                     }
@@ -73,7 +69,7 @@ class WinogradScaled {
         } else {
             for (i in 0 until M) {
                 for (k in 0 until N) {
-                    var aux = 0
+                    var aux = 0.0
                     for (j in 0 until gamma step 2) {
                         aux += (A[i][j] + B[j + 1][k]) * (A[i][j + 1] + B[j][k])
                     }
@@ -86,27 +82,29 @@ class WinogradScaled {
     }
 
     fun algWinogradScaled(
-        matrizA: Array<IntArray>,
-        matrizB: Array<IntArray>,
+        matrizA: Array<DoubleArray>,
+        matrizB: Array<DoubleArray>,
         N: Int,
         P: Int,
         M: Int
-    ): Array<IntArray> {
+    ): Array<DoubleArray> {
         val a = normInf(matrizA)
         val b = normInf(matrizB)
-        val lambda = floor(0.5 + log(b.toDouble() / a.toDouble(), E) / log(4.0, E)).toInt()
+        val lambda = floor(0.5 + log(b / a, E) / log(4.0, E)).toInt()
 
-        val copyA = multiplyWithScalar(matrizA, 1 shl lambda) // 2^lambda -> 1 shl lambda
-        val copyB = multiplyWithScalar(matrizB, 1 shl -lambda)
+        val copyA = multiplyWithScalar(matrizA, 2.0.pow(lambda))
+        val copyB = multiplyWithScalar(matrizB, 2.0.pow(-lambda))
 
         return algWinogradOriginal(copyA, copyB, N, P, M)
     }
 
-    fun multiply(matrizA: Array<IntArray>, matrizB: Array<IntArray>): Array<IntArray> {
+    fun multiply(matrizA: Array<DoubleArray>, matrizB: Array<DoubleArray>): Array<DoubleArray> {
         val N = matrizA.size
         val P = matrizB.size
         val M = matrizB[0].size
         return algWinogradScaled(matrizA, matrizB, N, P, M)
     }
+
+    fun Double.pow(exponent: Int): Double = this.pow(exponent.toDouble())
 
 }

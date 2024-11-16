@@ -4,19 +4,23 @@ import utils.Utils
 import kotlin.system.measureTimeMillis
 
 fun main(args: Array<String>) {
-    val algNaivOnArray= NaivOnArray()
+    val ruta = "src/main/kotlin/Matrices/Matriz 64x64"
     val utils = Utils()
 
     val size = 512 // Tamaño de la matriz
-    val matrizA = utils.generarMatriz(size)
-    val matrizB = utils.generarMatriz(size)
+    val matrizA = utils.loadMatrixFromFile("$ruta/MatrizA.txt")
+    val matrizB = utils.loadMatrixFromFile("$ruta/MatrizB.txt")
 
     val methods = listOf(
         NaivOnArray(),
         NaivLoopUnrollingTwo(),
         NaivLoopUnrollingFour(),
         WinogradOriginal(),
-        WinogradScaled()
+        WinogradScaled(),
+        StrassenNaiv(),
+        StrassenWinograd(),
+        III_3_SequentialBlock(),
+        III_5_EnhancedParallelBlock()
     )
 
     val results = mutableListOf<MatrixMultiplicationResult>()

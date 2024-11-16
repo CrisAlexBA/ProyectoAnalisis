@@ -15,7 +15,7 @@ class Utils {
      * @return Una matriz de Double (Array<DoubleArray>).
      * @throws Exception si el archivo no se puede leer o si hay un error en el formato.
      */
-    fun loadMatrixFromFile(filePath: String, delimiter: String = " "): Array<IntArray> {
+    fun loadMatrixFromFile(filePath: String, delimiter: String = " "): Array<DoubleArray> {
         val file = File(filePath)
         if (!file.exists()) {
             throw Exception("El archivo $filePath no existe.")
@@ -27,7 +27,7 @@ class Utils {
         }
 
         val matrix = lines.map { line ->
-            line.split(delimiter).filter { it.isNotBlank() }.map { it.toInt() }.toIntArray()
+            line.split(delimiter).filter { it.isNotBlank() }.map { it.toDouble() }.toDoubleArray()
         }.toTypedArray()
 
         // Verificar que todas las filas tengan el mismo número de columnas
