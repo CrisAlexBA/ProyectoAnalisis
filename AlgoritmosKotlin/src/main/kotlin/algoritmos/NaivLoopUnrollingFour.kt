@@ -1,5 +1,7 @@
 package algoritmos
 
+import java.lang.Exception
+
 class NaivLoopUnrollingFour {
 
     fun naivLoopUnrollingFour(a: Array<DoubleArray>, b: Array<DoubleArray>, n: Int, p: Int, m: Int): Array<DoubleArray> {
@@ -52,8 +54,14 @@ class NaivLoopUnrollingFour {
         return c
     }
 
-    fun multiply(){
-
+    fun multiply(a: Array<DoubleArray>, b: Array<DoubleArray>): Array<DoubleArray> {
+        var n = a.size
+        var p = b.size
+        var m = b[0].size
+        if (p != b.size) {
+            throw Exception("El número de columnas de A debe ser igual al número de filas de B.")
+        }
+        return naivLoopUnrollingFour(a,b,n,p,m)
     }
 
 }

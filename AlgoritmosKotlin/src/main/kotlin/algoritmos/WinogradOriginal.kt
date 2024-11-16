@@ -1,5 +1,7 @@
 package algoritmos
 
+import java.lang.Exception
+
 class WinogradOriginal {
 
     fun winogradOriginal(a: Array<DoubleArray>, b: Array<DoubleArray>, n: Int, p: Int, m: Int): Array<DoubleArray> {
@@ -51,6 +53,16 @@ class WinogradOriginal {
         }
 
         return c
+    }
+
+    fun multiply(a: Array<DoubleArray>, b: Array<DoubleArray>): Array<DoubleArray> {
+        var n = a.size
+        var p = b.size
+        var m = b[0].size
+        if (p != b.size) {
+            throw Exception("El número de columnas de A debe ser igual al número de filas de B.")
+        }
+        return winogradOriginal(a,b,n,p,m)
     }
 
 }
