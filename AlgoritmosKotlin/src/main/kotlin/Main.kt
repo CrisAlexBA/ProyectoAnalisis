@@ -1,4 +1,4 @@
-import metodos.NaivOnArray
+import algoritmos.NaivOnArray
 import utils.Utils
 
 fun main(args: Array<String>) {

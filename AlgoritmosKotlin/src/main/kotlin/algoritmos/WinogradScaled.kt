@@ -1,4 +1,4 @@
-package metodos
+package algoritmos
 
 import kotlin.math.abs
 import kotlin.math.log

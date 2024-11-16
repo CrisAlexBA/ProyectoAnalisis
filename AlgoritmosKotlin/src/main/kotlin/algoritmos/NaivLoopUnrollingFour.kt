@@ -1,4 +1,4 @@
-package metodos
+package algoritmos
 
 class NaivLoopUnrollingFour {
 

@@ -1,4 +1,4 @@
-package metodos
+package algoritmos
 import java.lang.Exception
 
 class NaivOnArray {
