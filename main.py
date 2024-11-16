@@ -15,7 +15,7 @@ from utils import *  # Importar funciones útiles
 # Main para probar todos los algoritmos
 def main():
     # Definir tamaño de la matriz
-    size = 512  # Cambiar tamaño según sea necesario
+    size = 16  # Cambiar tamaño según sea necesario
     block_size = 2  # Tamaño de bloque para algoritmos en bloque
     
     # Generar matrices aleatorias
@@ -68,9 +68,12 @@ def main():
         print("matplotlib no está instalado, se saltará la gráfica.")
     
     if importar_matplotlib:
-        # Extraer los nombres de los algoritmos y los tiempos para la gráfica
+    # Extraer los nombres de los algoritmos y los tiempos para la gráfica
         nombres = [r[0] for r in resultados]
         tiempos = [r[2] for r in resultados]
+
+        # Ordenar los algoritmos por tiempo de ejecución de mayor a menor
+        nombres, tiempos = zip(*sorted(zip(nombres, tiempos), key=lambda x: x[1], reverse=True))
 
         # Crear gráfico de barras
         plt.bar(nombres, tiempos)
@@ -80,6 +83,7 @@ def main():
         plt.xticks(rotation=45)
         plt.tight_layout()
         plt.show()
+
 
 
 if __name__ == "__main__":

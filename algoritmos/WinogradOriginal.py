@@ -42,4 +42,5 @@ def multiply(matrizA, matrizB):
     N = len(matrizA)
     P = len(matrizB)
     M = len(matrizB[0])
-    alg_winograd_original(matrizA, matrizB, N, P, M)
+    matrizRes =  alg_winograd_original(matrizA, matrizB, N, P, M)
+    return matrizRes
