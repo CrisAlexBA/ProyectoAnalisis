@@ -30,6 +30,7 @@ fun main(args: Array<String>) {
             StrassenNaiv(),
             StrassenWinograd(),
             III_3_SequentialBlock(),
+            III_4_ParallelBlock(tamanoElegido, 2),
             III_5_EnhancedParallelBlock()
         )
 

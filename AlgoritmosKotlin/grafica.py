@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 def graficar(resultados):
     nombres = [r[0] for r in resultados]
     tiempos = [r[1] for r in resultados]
+
+    nombres, tiempos = zip(*sorted(zip(nombres, tiempos), key=lambda x: x[1], reverse=True))
     
     plt.bar(nombres, tiempos)
     plt.xlabel('Algoritmos')
