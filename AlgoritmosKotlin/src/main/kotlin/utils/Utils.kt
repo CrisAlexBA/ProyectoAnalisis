@@ -51,13 +51,36 @@ class Utils {
         return Pair(resultado, tiempo)
     }
 
-    fun guardarResultadosCsv(resultados: List<List<Any>>, archivoCsv: String = "resultados.csv") {
+    fun guardarResultadosCsv(resultados: MutableList<MatrixMultiplicationResult>, archivoCsv: String = "resultados.csv") {
         val archivo = File(archivoCsv)
         if (!archivo.exists()) {
-            archivo.writeText("Algoritmo,Tamaño de Matriz,Tiempo de Ejecución (ms)\n") // Encabezados
+            archivo.writeText("Algoritmo,Tamano de Matriz,Tiempo de Ejecucion (ms)\n") // Encabezados
         }
         resultados.forEach { fila ->
-            archivo.appendText("${fila[0]},${fila[1]},${fila[2]}\n")
+            archivo.appendText("${fila.nombreMetodo},${fila.tamano},${fila.tiempoEjecucion}\n")
         }
+    }
+
+    fun ejecutarScriptPython(results: List<MatrixMultiplicationResult>) {
+        // Crear un archivo txt con los resultados
+        val resultadosJson = results.map { result ->
+            "${result.nombreMetodo} ${result.tiempoEjecucion} ${result.tamano}"
+        }
+        val resultadosFile = File("resultados.txt")
+        resultadosFile.writeText("")
+        for(line in resultadosJson) {
+            resultadosFile.appendText("$line\n")
+        }
+
+        // Ejecutar el script de Python
+        val process = ProcessBuilder("python", "grafica.py", "resultados.json")
+            .redirectErrorStream(true)
+            .start()
+
+        // Leer la salida del script
+        process.inputStream.bufferedReader().forEachLine { println(it) }
+
+        // Esperar a que el proceso termine
+        process.waitFor()
     }
 }

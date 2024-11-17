@@ -1,0 +1,10 @@
+Algoritmo,Tamano de Matriz,Tiempo de Ejecucion (ms)
+NaivOnArray,(2, 2),0
+NaivLoopUnrollingTwo,(2, 2),2
+NaivLoopUnrollingFour,(2, 2),0
+WinogradOriginal,(2, 2),0
+WinogradScaled,(2, 2),2
+StrassenNaiv,(2, 2),0
+StrassenWinograd,(2, 2),0
+III_3_SequentialBlock,(2, 2),0
+III_5_EnhancedParallelBlock,(2, 2),6
